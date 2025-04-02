@@ -2,3 +2,12 @@ node_modules
 .vscode
 coverage
 package-lock.json
+
+# Cypress
+/cypress/videos
+/cypress/screenshots
+/cypress/fixtures
+/cypress/results
+/cypress/plugins
+/cypress/downloads
+/cypress/reports
