@@ -46,10 +46,8 @@ it.skip("Добавление книг в библиотеку", () => {
 
 describe.only("Домашнее задание", () => {
     beforeEach(() => {
-        cy.visit("/");
         cy.login("test@test.com", "test");
         cy.clearFavorites();
-        cy.visit("/");
     });
     afterEach(() => {
         cy.logout();
@@ -57,26 +55,28 @@ describe.only("Домашнее задание", () => {
 
     it("Добавление книги в избранное", () => {
         const title = "Война и мир";
-        cy.getCardByTitle(title).contains("Add to favorite").click();
+        cy.addToFavorites(title);
         cy.visit("/favorites");
         cy.getCardByTitle(title)
-            .contains("Delete from favorite")
+            .find(".btn-secondary")
             .should("have.text", "Delete from favorite");
     });
 
     it("Удаление книги из избранного", () => {
         const title = "Война и мир";
-        cy.getCardByTitle(title).contains("Add to favorite").click();
-        cy.visit("/favorites");
-        cy.getCardByTitle(title).contains("Delete from favorite").click();
+        cy.addToFavorites(title);
+        cy.removeFromFavorites(title);
         cy.visit("/");
         cy.getCardByTitle(title)
-            .contains("Add to favorite") // Кнопка снова доступна
+            .find(".btn-success")
             .should("have.text", "Add to favorite");
     });
 
     it("Проверка текста по эндпоинту при пустом избранном", () => {
         cy.visit("/favorites");
-        cy.contains("Please add some book to favorit on home page!");
+        cy.get(".text-info").should(
+            "have.text",
+            "Please add some book to favorit on home page!",
+        );
     });
 });
