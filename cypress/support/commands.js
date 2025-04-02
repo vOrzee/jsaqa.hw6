@@ -1,15 +1,3 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
 Cypress.Commands.add("login", (email, password) => {
     cy.contains("Log in").click();
     if (email) {
@@ -20,15 +8,30 @@ Cypress.Commands.add("login", (email, password) => {
     }
     cy.contains("Submit").click();
 });
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add("logout", () => {
+    cy.contains("Log out").click();
+});
+Cypress.Commands.add("addBook", (title, authors) => {
+    cy.contains("Add new").click();
+    cy.get("#title").type(title);
+    cy.get("#authors").type(authors);
+    cy.contains("Submit").click();
+});
+Cypress.Commands.add("getCardByTitle", (title) => {
+    return cy.contains(".card-title", title).closest(".card");
+});
+Cypress.Commands.add("clearFavorites", (timeout = 2000) => {
+    cy.visit("/favorites");
+    cy.wait(timeout);
+    const deleteBook = () => {
+        cy.get("body").then(($body) => {
+            const buttons = $body.find(".btn-secondary");
+            if (buttons.length > 0) {
+                cy.wait(timeout);
+                cy.wrap(buttons.first()).click();
+                deleteBook();
+            }
+        });
+    };
+    deleteBook();
+});
