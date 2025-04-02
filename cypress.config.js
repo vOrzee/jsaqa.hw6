@@ -6,6 +6,8 @@ module.exports = defineConfig({
         setupNodeEvents(on, config) {
             // implement node event listeners here
         },
+        retries: 2,
+        baseUrl: "http://localhost:3000",
     },
 });
 /* eslint-enable no-unused-vars */
