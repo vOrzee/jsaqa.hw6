@@ -4,9 +4,9 @@ const { defineConfig } = require("cypress");
 module.exports = defineConfig({
     e2e: {
         setupNodeEvents(on, config) {},
+        viewportWidth: 360,
+        viewportHeight: 800,
         retries: 2,
-        viewportWidth: 1920,
-        viewportHeight: 1080,
         baseUrl: "http://localhost:3000",
     },
 });
