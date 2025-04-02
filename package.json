@@ -4,7 +4,10 @@
     "description": "cypress test",
     "main": "index.js",
     "scripts": {
-        "test": ""
+        "test-headless": "npx cypress run -b edge -C cypress.config.js",
+        "test-headed": "npx cypress run -b chrome --headed -C cypress.config.js",
+        "test-mobile-headless": "npx cypress run -b edge -C cypress-2.config.js",
+        "test-mobile-headed": "npx cypress run -b chrome --headed -C cypress-2.config.js"
     },
     "repository": {
         "type": "git",
