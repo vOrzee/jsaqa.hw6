@@ -1,0 +1,36 @@
+{
+    "name": "jsaqa.wh6",
+    "version": "1.0.0",
+    "description": "cypress test",
+    "main": "index.js",
+    "scripts": {
+        "test": ""
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/vOrzee/jsaqa.hw6.git"
+    },
+    "keywords": [
+        "cypress",
+        "test",
+        "jsaqa"
+    ],
+    "author": "Roman Leshin",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/vOrzee/jsaqa.hw6/issues"
+    },
+    "homepage": "https://github.com/vOrzee/jsaqa.hw6#readme",
+    "devDependencies": {
+        "@types/node": "^22.13.14",
+        "eslint": "^9.23.0",
+        "eslint-config-prettier": "^10.1.1",
+        "eslint-plugin-cypress": "^4.2.0",
+        "eslint-plugin-prettier": "^5.2.5",
+        "globals": "^16.0.0",
+        "prettier": "^3.5.3"
+    },
+    "dependencies": {
+        "cypress": "^14.2.1"
+    }
+}
